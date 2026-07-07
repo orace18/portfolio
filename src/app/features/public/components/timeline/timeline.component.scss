@@ -1,41 +1,70 @@
+.timeline-section {
+  background: var(--color-bg-tint-cool);
+}
+
 .timeline {
   list-style: none;
   margin: 0 auto;
   padding: 0;
-  max-width: 640px;
+  max-width: 760px;
   position: relative;
 }
 
 .timeline::before {
   content: '';
   position: absolute;
-  left: 5px;
-  top: 6px;
-  bottom: 6px;
+  left: 50%;
+  top: 4px;
+  bottom: 4px;
   width: 2px;
   background: var(--color-border);
+  transform: translateX(-50%);
 }
 
 .timeline__item {
   position: relative;
-  padding-left: 32px;
-  margin-bottom: 28px;
+  width: 50%;
+  padding: 0 44px 36px 0;
 }
 
 .timeline__item:last-child {
-  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.timeline__item--right {
+  margin-left: 50%;
+  padding: 0 0 36px 44px;
 }
 
 .timeline__marker {
   position: absolute;
-  left: 0;
   top: 6px;
-  width: 12px;
-  height: 12px;
+  right: -7px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--color-accent);
-  border: 2px solid var(--color-bg);
+  border: 3px solid var(--color-bg);
   box-shadow: 0 0 0 2px var(--color-accent);
+  z-index: 1;
+}
+
+.timeline__item--right .timeline__marker {
+  left: -7px;
+  right: auto;
+}
+
+.timeline__content {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.timeline__content:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .timeline__period {
@@ -47,12 +76,33 @@
 }
 
 .timeline__title {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   margin-bottom: 0.2em;
 }
 
 .timeline__place {
   color: var(--color-text-secondary);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   margin: 0;
+}
+
+@media (max-width: 700px) {
+  .timeline::before {
+    left: 19px;
+    transform: none;
+  }
+
+  .timeline__item,
+  .timeline__item--right {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 0 28px 48px;
+  }
+
+  .timeline__item .timeline__marker,
+  .timeline__item--right .timeline__marker {
+    left: 13px;
+    right: auto;
+    top: 4px;
+  }
 }

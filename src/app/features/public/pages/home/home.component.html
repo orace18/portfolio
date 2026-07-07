@@ -1,9 +1,18 @@
 <app-header />
 <main>
   <app-hero />
+  <app-divider fill="var(--color-bg-alt)" variant="wave" />
+
   <app-projects />
+  <app-divider fill="var(--color-bg-tint-warm)" variant="angle" [flip]="true" />
+
   <app-skills />
+  <app-divider fill="var(--color-bg-tint-cool)" variant="wave" />
+
   <app-timeline />
+  <app-divider fill="var(--color-bg)" variant="angle" />
+
   <app-contact />
+  <app-divider fill="var(--color-slate)" variant="wave" [flip]="true" />
 </main>
 <app-footer />

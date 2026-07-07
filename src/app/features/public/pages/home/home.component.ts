@@ -6,6 +6,7 @@ import { SkillsComponent } from '../../components/skills/skills.component';
 import { TimelineComponent } from '../../components/timeline/timeline.component';
 import { ContactComponent } from '../../components/contact/contact.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { DividerComponent } from '../../../../shared/components/divider/divider.component';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +18,7 @@ import { FooterComponent } from '../../components/footer/footer.component';
     TimelineComponent,
     ContactComponent,
     FooterComponent,
+    DividerComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

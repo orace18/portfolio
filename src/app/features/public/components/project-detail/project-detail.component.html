@@ -11,7 +11,7 @@
 
       <div class="modal__tags">
         @for (tech of project.stack; track tech) {
-          <span class="modal__tag">{{ tech }}</span>
+          <app-tech-badge [name]="tech" />
         }
       </div>
 

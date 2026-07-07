@@ -1,9 +1,10 @@
 import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { Project } from '../../../../core/models/project.model';
+import { TechBadgeComponent } from '../../../../shared/components/tech-badge/tech-badge.component';
 
 @Component({
   selector: 'app-project-detail',
-  imports: [],
+  imports: [TechBadgeComponent],
   templateUrl: './project-detail.component.html',
   styleUrl: './project-detail.component.scss',
 })

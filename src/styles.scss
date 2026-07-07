@@ -7,6 +7,8 @@
   --color-slate-light: #3e4e63;
   --color-bg: #fafafa;
   --color-bg-alt: #ffffff;
+  --color-bg-tint-warm: #fdf3ea;
+  --color-bg-tint-cool: #f1f4f7;
   --color-text: #2d3a4a;
   --color-text-secondary: #6b7684;
   --color-border: #e4e7eb;
@@ -222,6 +224,41 @@ button {
 .field textarea {
   resize: vertical;
   min-height: 90px;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal--left {
+  transform: translateX(-32px);
+}
+
+.scroll-reveal--left.scroll-reveal--visible {
+  transform: translateX(0);
+}
+
+.scroll-reveal--right {
+  transform: translateX(32px);
+}
+
+.scroll-reveal--right.scroll-reveal--visible {
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 768px) {

@@ -1,14 +1,16 @@
 <section id="contact" class="contact section">
   <div class="container">
-    <h2 class="section-title">Contact</h2>
-    <p class="section-subtitle">
+    <h2 class="section-title" appScrollReveal>Contact</h2>
+    <p class="section-subtitle" appScrollReveal>
       Une idée de projet, une opportunité ? Écrivez-moi directement, je réponds rapidement.
     </p>
 
     <div class="contact__grid">
-      @for (link of links; track link.label) {
+      @for (link of links; track link.label; let i = $index) {
         <a
           class="contact__card"
+          appScrollReveal
+          [revealDelay]="i * 80"
           [href]="link.href"
           target="_blank"
           rel="noopener"

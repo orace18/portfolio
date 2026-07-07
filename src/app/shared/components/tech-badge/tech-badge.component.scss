@@ -1,0 +1,25 @@
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-slate);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 999px;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.tech-badge:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.tech-badge__icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+}

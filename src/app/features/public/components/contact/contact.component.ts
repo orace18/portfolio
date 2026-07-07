@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reveal.directive';
 
 interface ContactLink {
   label: string;
@@ -8,7 +9,7 @@ interface ContactLink {
 
 @Component({
   selector: 'app-contact',
-  imports: [],
+  imports: [ScrollRevealDirective],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
