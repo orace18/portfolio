@@ -5,6 +5,14 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
 async function bootstrap(): Promise<void> {
+  // eslint-disable-next-line no-console
+  console.log('[diag] MONGODB_URI défini ?', !!process.env.MONGODB_URI);
+  // eslint-disable-next-line no-console
+  console.log(
+    '[diag] Variables d\'env visibles contenant MONGO/JWT/ADMIN/CORS :',
+    Object.keys(process.env).filter((key) => /MONGO|JWT|ADMIN|CORS/i.test(key))
+  );
+
   const app = await NestFactory.create(AppModule);
 
   const corsOrigin = process.env.CORS_ORIGIN?.split(',').map((origin) => origin.trim()) ?? [
