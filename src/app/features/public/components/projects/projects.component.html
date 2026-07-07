@@ -1,0 +1,57 @@
+<section id="projets" class="projects section">
+  <div class="container">
+    <h2 class="section-title">Projets</h2>
+    <p class="section-subtitle">
+      Une sélection de projets personnels et professionnels, mobiles et backend.
+    </p>
+
+    @if (projects() === null) {
+      <div class="projects__state">Chargement des projets…</div>
+    } @else if (projects()!.length === 0) {
+      <div class="projects__state">
+        De nouveaux projets arrivent bientôt. Revenez vite&nbsp;!
+      </div>
+    } @else {
+      <div class="projects__grid">
+        @for (project of projects(); track project.id) {
+          <article class="project-card" (click)="openProject(project)">
+            @if (project.coverImage) {
+              <img class="project-card__image" [src]="project.coverImage" [alt]="project.title" loading="lazy" />
+            } @else {
+              <div class="project-card__placeholder">{{ project.title.slice(0, 2) }}</div>
+            }
+
+            <div class="project-card__body">
+              <h3 class="project-card__title">{{ project.title }}</h3>
+              <p class="project-card__description">{{ project.shortDescription }}</p>
+
+              <div class="project-card__tags">
+                @for (tech of project.stack; track tech) {
+                  <span class="project-card__tag">{{ tech }}</span>
+                }
+              </div>
+
+              @if (project.links.playStore || project.links.github || project.links.live) {
+                <div class="project-card__links">
+                  @if (project.links.live) {
+                    <a [href]="project.links.live" target="_blank" rel="noopener" (click)="$event.stopPropagation()">Démo</a>
+                  }
+                  @if (project.links.playStore) {
+                    <a [href]="project.links.playStore" target="_blank" rel="noopener" (click)="$event.stopPropagation()">Play Store</a>
+                  }
+                  @if (project.links.github) {
+                    <a [href]="project.links.github" target="_blank" rel="noopener" (click)="$event.stopPropagation()">GitHub</a>
+                  }
+                </div>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+@if (selectedProject(); as project) {
+  <app-project-detail [project]="project" (closed)="closeProject()" />
+}

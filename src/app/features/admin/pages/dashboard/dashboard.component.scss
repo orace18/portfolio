@@ -1,0 +1,155 @@
+.dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.dashboard__header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.dashboard__message {
+  background: #eaf6ec;
+  color: #256029;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.dashboard__state {
+  color: var(--color-text-secondary);
+}
+
+.dashboard__empty {
+  text-align: center;
+  padding: 48px 24px;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text-secondary);
+}
+
+.dashboard__empty p {
+  margin-bottom: 1em;
+}
+
+.dashboard__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dashboard__seed {
+  margin-top: 20px;
+}
+
+.project-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  transition: opacity var(--transition-fast);
+}
+
+.project-row--busy {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.project-row__thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.project-row__thumb--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-slate), var(--color-slate-light));
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.project-row__info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.project-row__title {
+  font-weight: 600;
+  color: var(--color-slate);
+}
+
+.project-row__slug {
+  font-size: 0.82rem;
+  color: var(--color-text-secondary);
+}
+
+.project-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-alt);
+  cursor: pointer;
+  color: var(--color-slate);
+  transition: background-color var(--transition-fast);
+}
+
+.icon-btn:hover:not(:disabled) {
+  background: var(--color-bg);
+}
+
+.icon-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.badge-toggle {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.badge-toggle--on {
+  background: #eaf6ec;
+  color: #256029;
+  border-color: #b6e0bb;
+}
+
+@media (max-width: 640px) {
+  .project-row {
+    flex-wrap: wrap;
+  }
+
+  .project-row__actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

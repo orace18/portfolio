@@ -1,0 +1,24 @@
+<header class="header">
+  <div class="container header__inner">
+    <a href="#accueil" class="header__logo" (click)="closeMenu()">OE</a>
+
+    <button
+      type="button"
+      class="header__toggle"
+      [class.header__toggle--open]="menuOpen()"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-label="Ouvrir le menu de navigation"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="header__nav" [class.header__nav--open]="menuOpen()">
+      @for (link of navLinks; track link.fragment) {
+        <a [href]="'#' + link.fragment" (click)="closeMenu()">{{ link.label }}</a>
+      }
+    </nav>
+  </div>
+</header>

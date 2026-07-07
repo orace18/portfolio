@@ -1,0 +1,76 @@
+<div class="dashboard">
+  <div class="dashboard__header">
+    <h1>Projets</h1>
+    <a routerLink="/admin/projects/new" class="btn btn-primary">+ Nouveau projet</a>
+  </div>
+
+  @if (message()) {
+    <p class="dashboard__message">{{ message() }}</p>
+  }
+
+  @if (projects() === null) {
+    <p class="dashboard__state">Chargement…</p>
+  } @else if (projects()!.length === 0) {
+    <div class="dashboard__empty">
+      <p>Aucun projet pour l'instant.</p>
+      <button type="button" class="btn btn-secondary" (click)="importSeed()" [disabled]="seeding()">
+        {{ seeding() ? 'Import en cours…' : 'Importer les données de départ' }}
+      </button>
+    </div>
+  } @else {
+    <div class="dashboard__list">
+      @for (project of projects(); track project.id; let first = $first; let last = $last) {
+        <div class="project-row" [class.project-row--busy]="busyId() === project.id">
+          @if (project.coverImage) {
+            <img class="project-row__thumb" [src]="project.coverImage" [alt]="project.title" />
+          } @else {
+            <div class="project-row__thumb project-row__thumb--placeholder">{{ project.title.slice(0, 2) }}</div>
+          }
+
+          <div class="project-row__info">
+            <span class="project-row__title">{{ project.title }}</span>
+            <span class="project-row__slug">/{{ project.slug }} · ordre {{ project.order }}</span>
+          </div>
+
+          <div class="project-row__actions">
+            <button
+              type="button"
+              class="icon-btn"
+              (click)="moveUp(project)"
+              [disabled]="first || busyId() === project.id"
+              aria-label="Monter"
+              title="Monter"
+            >↑</button>
+            <button
+              type="button"
+              class="icon-btn"
+              (click)="moveDown(project)"
+              [disabled]="last || busyId() === project.id"
+              aria-label="Descendre"
+              title="Descendre"
+            >↓</button>
+
+            <button
+              type="button"
+              class="badge-toggle"
+              [class.badge-toggle--on]="project.visible"
+              (click)="toggleVisible(project)"
+              [disabled]="busyId() === project.id"
+            >
+              {{ project.visible ? 'Visible' : 'Masqué' }}
+            </button>
+
+            <a [routerLink]="['/admin/projects', project.id, 'edit']" class="btn btn-secondary btn-sm">Modifier</a>
+            <button type="button" class="btn btn-sm btn-danger" (click)="remove(project)" [disabled]="busyId() === project.id">
+              Supprimer
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <button type="button" class="btn btn-secondary dashboard__seed" (click)="importSeed()" [disabled]="seeding()">
+      {{ seeding() ? 'Import en cours…' : 'Importer les données de départ' }}
+    </button>
+  }
+</div>

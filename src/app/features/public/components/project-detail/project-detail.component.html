@@ -1,0 +1,33 @@
+<div class="modal-backdrop" (click)="close()">
+  <div class="modal" role="dialog" aria-modal="true" [attr.aria-label]="project.title" (click)="$event.stopPropagation()">
+    <button type="button" class="modal__close" (click)="close()" aria-label="Fermer">✕</button>
+
+    @if (project.coverImage) {
+      <img class="modal__image" [src]="project.coverImage" [alt]="project.title" />
+    }
+
+    <div class="modal__body">
+      <h3 class="modal__title">{{ project.title }}</h3>
+
+      <div class="modal__tags">
+        @for (tech of project.stack; track tech) {
+          <span class="modal__tag">{{ tech }}</span>
+        }
+      </div>
+
+      <p class="modal__description">{{ project.longDescription }}</p>
+
+      <div class="modal__links">
+        @if (project.links.live) {
+          <a class="btn btn-primary" [href]="project.links.live" target="_blank" rel="noopener">Voir la démo</a>
+        }
+        @if (project.links.playStore) {
+          <a class="btn btn-secondary" [href]="project.links.playStore" target="_blank" rel="noopener">Play Store</a>
+        }
+        @if (project.links.github) {
+          <a class="btn btn-secondary" [href]="project.links.github" target="_blank" rel="noopener">Code source</a>
+        }
+      </div>
+    </div>
+  </div>
+</div>

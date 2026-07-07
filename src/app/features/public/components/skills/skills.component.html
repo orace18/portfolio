@@ -1,0 +1,19 @@
+<section id="competences" class="skills section">
+  <div class="container">
+    <h2 class="section-title">Compétences</h2>
+    <p class="section-subtitle">Un socle technique complet, du mobile au backend, pensé pour le marché ouest-africain.</p>
+
+    <div class="skills__grid">
+      @for (group of skillGroups; track group.category) {
+        <div class="skills__card">
+          <h3 class="skills__category">{{ group.category }}</h3>
+          <div class="skills__tags">
+            @for (skill of group.skills; track skill) {
+              <span class="skills__tag">{{ skill }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

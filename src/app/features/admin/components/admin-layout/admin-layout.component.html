@@ -1,0 +1,16 @@
+<div class="admin">
+  <header class="admin__bar">
+    <a routerLink="/admin" class="admin__brand">
+      <span class="admin__logo">OE</span>
+      Admin
+    </a>
+    <div class="admin__actions">
+      <a href="/" target="_blank" rel="noopener" class="admin__link">Voir le site</a>
+      <button type="button" class="btn btn-secondary admin__logout" (click)="logout()">Déconnexion</button>
+    </div>
+  </header>
+
+  <main class="admin__content">
+    <router-outlet />
+  </main>
+</div>

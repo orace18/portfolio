@@ -1,0 +1,108 @@
+<div class="project-form">
+  <div class="project-form__header">
+    <h1>{{ isEditMode() ? 'Modifier le projet' : 'Nouveau projet' }}</h1>
+    <a routerLink="/admin" class="btn btn-secondary btn-sm">Annuler</a>
+  </div>
+
+  @if (loading()) {
+    <p>Chargement…</p>
+  } @else {
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label class="field">
+        <span class="field__label">Titre</span>
+        <input
+          type="text"
+          formControlName="title"
+          (input)="onTitleInput($any($event.target).value)"
+          placeholder="Nom du projet"
+        />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Slug</span>
+        <input type="text" formControlName="slug" placeholder="mon-projet" />
+        <span class="field__hint">Utilisé dans les URLs, généré automatiquement depuis le titre.</span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Description courte (200 caractères max)</span>
+        <textarea formControlName="shortDescription" maxlength="200" rows="2"></textarea>
+        <span class="field__hint">
+          {{ form.controls.shortDescription.value.length }}/200
+        </span>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Description longue</span>
+        <textarea formControlName="longDescription" rows="5"></textarea>
+      </label>
+
+      <div class="field">
+        <span class="field__label">Stack technique</span>
+        <div class="tag-input">
+          <input
+            type="text"
+            [value]="stackInputValue()"
+            (input)="stackInputValue.set($any($event.target).value)"
+            (keydown.enter)="$event.preventDefault(); addStackTag()"
+            (blur)="addStackTag()"
+            placeholder="Flutter, Dart… puis Entrée"
+          />
+        </div>
+        @if (stack().length) {
+          <div class="tag-list">
+            @for (tag of stack(); track tag) {
+              <span class="tag-chip">
+                {{ tag }}
+                <button type="button" (click)="removeStackTag(tag)" aria-label="Retirer">✕</button>
+              </span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="field-row">
+        <label class="field">
+          <span class="field__label">Lien Play Store (optionnel)</span>
+          <input type="url" formControlName="playStore" placeholder="https://play.google.com/…" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Lien GitHub (optionnel)</span>
+          <input type="url" formControlName="github" placeholder="https://github.com/…" />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Lien démo live (optionnel)</span>
+          <input type="url" formControlName="live" placeholder="https://…" />
+        </label>
+      </div>
+
+      <div class="field">
+        <span class="field__label">Image de couverture</span>
+        <input type="file" accept="image/jpeg,image/png,image/webp" (change)="onFileSelected($event)" />
+        <span class="field__hint">JPEG, PNG ou WebP — 2 Mo maximum.</span>
+        @if (fileError()) {
+          <span class="field__error">{{ fileError() }}</span>
+        }
+
+        @if (previewUrl() || existingCoverImage()) {
+          <img class="cover-preview" [src]="previewUrl() || existingCoverImage()" alt="Aperçu de la couverture" />
+        }
+      </div>
+
+      <label class="field field--toggle">
+        <input type="checkbox" formControlName="visible" />
+        <span>Visible sur le site public</span>
+      </label>
+
+      @if (errorMessage()) {
+        <p class="project-form__error">{{ errorMessage() }}</p>
+      }
+
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">
+        {{ saving() ? 'Enregistrement…' : 'Enregistrer' }}
+      </button>
+    </form>
+  }
+</div>

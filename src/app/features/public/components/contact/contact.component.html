@@ -1,0 +1,22 @@
+<section id="contact" class="contact section">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-subtitle">
+      Une idée de projet, une opportunité ? Écrivez-moi directement, je réponds rapidement.
+    </p>
+
+    <div class="contact__grid">
+      @for (link of links; track link.label) {
+        <a
+          class="contact__card"
+          [href]="link.href"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="contact__label">{{ link.label }}</span>
+          <span class="contact__value">{{ link.value }}</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
