@@ -6,11 +6,11 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: 'VOTRE_API_KEY',
-    authDomain: 'VOTRE_PROJET.firebaseapp.com',
-    projectId: 'VOTRE_PROJET_ID',
-    storageBucket: 'VOTRE_PROJET.firebasestorage.app',
-    messagingSenderId: 'VOTRE_SENDER_ID',
-    appId: 'VOTRE_APP_ID',
+    apiKey: 'AIzaSyAxAP2EQ9jMWfagCj43f66p5a5PkMthO7o',
+    authDomain: 'campusevent-4b069.firebaseapp.com',
+    projectId: 'campusevent-4b069',
+    storageBucket: 'campusevent-4b069.firebasestorage.app',
+    messagingSenderId: '704148412129',
+    appId: '1:704148412129:web:f12554393463db01da89a0',
   },
 };
