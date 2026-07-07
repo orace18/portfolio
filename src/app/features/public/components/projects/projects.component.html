@@ -16,7 +16,7 @@
         @for (project of projects(); track project.id; let i = $index) {
           <article class="project-card" appScrollReveal [revealDelay]="i * 80" (click)="openProject(project)">
             @if (project.coverImage) {
-              <img class="project-card__image" [src]="project.coverImage" [alt]="project.title" loading="lazy" />
+              <img class="project-card__image" [src]="coverImageUrl(project.coverImage)" [alt]="project.title" loading="lazy" />
             } @else {
               <div class="project-card__placeholder">{{ project.title.slice(0, 2) }}</div>
             }

@@ -1,8 +1,8 @@
-import { ProjectFormValue } from '../models/project.model';
+import { CreateProjectDto } from './dto/create-project.dto';
 
-// Données de démarrage : importées via le bouton "Importer les données de départ"
-// dans le dashboard admin (écriture Firestore réservée aux utilisateurs authentifiés).
-export const SEED_PROJECTS: ProjectFormValue[] = [
+// Données de démarrage insérées via POST /projects/seed (protégé, admin uniquement),
+// appelé par le bouton "Importer les données de départ" du dashboard admin.
+export const SEED_PROJECTS: CreateProjectDto[] = [
   {
     title: 'GazFacile',
     slug: 'gazfacile',
@@ -44,8 +44,7 @@ export const SEED_PROJECTS: ProjectFormValue[] = [
   {
     title: 'Kalltake',
     slug: 'kalltake',
-    shortDescription:
-      'Plateforme de mobilité avec gestion complète des conducteurs et paiement mobile intégré.',
+    shortDescription: 'Plateforme de mobilité avec gestion complète des conducteurs et paiement mobile intégré.',
     longDescription:
       "Kalltake est une plateforme de mobilité pour laquelle j'ai conçu, chez WonderTeck, le backend complet avec NestJS. Il couvre les inscriptions, les profils et la gestion des disponibilités des conducteurs, avec une authentification sécurisée par JWT et refresh token. L'intégration Mobile Money MTN et Moov gère l'initiation des paiements, les callbacks et la réconciliation, et un système de parrainage calcule automatiquement les commissions. L'API est entièrement documentée avec Swagger et consommée par l'application mobile associée, avec persistance des données via TypeORM sur PostgreSQL.",
     stack: ['NestJS', 'TypeScript', 'PostgreSQL', 'TypeORM'],
@@ -105,7 +104,8 @@ export const SEED_PROJECTS: ProjectFormValue[] = [
   {
     title: 'Eranou',
     slug: 'eranou',
-    shortDescription: 'Plateforme e-commerce mobile (client et marchand) avec paiement mobile intégré, publiée sur le Play Store.',
+    shortDescription:
+      'Plateforme e-commerce mobile (client et marchand) avec paiement mobile intégré, publiée sur le Play Store.',
     longDescription:
       "Eranou est une plateforme e-commerce développée pour VallisTech, composée de deux applications Flutter distinctes : une pour les clients et une pour les marchands. Côté client, l'application couvre l'ensemble du parcours d'achat, de la navigation dans le catalogue jusqu'au paiement. Côté marchand, elle permet la gestion des produits et le suivi des commandes. Le paiement est intégré via Mobile Money pour des transactions locales simplifiées, et les deux applications sont aujourd'hui publiées sur le Play Store.",
     stack: ['Flutter', 'Dart', 'Mobile Money'],

@@ -1,5 +1,3 @@
-import { Timestamp } from '@angular/fire/firestore';
-
 export interface ProjectLinks {
   playStore?: string;
   github?: string;
@@ -7,7 +5,7 @@ export interface ProjectLinks {
 }
 
 export interface Project {
-  id?: string;
+  id: string;
   title: string;
   slug: string;
   shortDescription: string;
@@ -17,8 +15,8 @@ export interface Project {
   coverImage: string;
   visible: boolean;
   order: number;
-  createdAt?: Timestamp;
-  updatedAt?: Timestamp;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export type ProjectFormValue = Omit<Project, 'id' | 'createdAt' | 'updatedAt'>;

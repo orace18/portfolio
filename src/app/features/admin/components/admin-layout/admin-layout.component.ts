@@ -13,7 +13,7 @@ export class AdminLayoutComponent {
   private readonly router = inject(Router);
 
   async logout(): Promise<void> {
-    await this.authService.logout();
+    this.authService.logout();
     await this.router.navigate(['/admin/login']);
   }
 }

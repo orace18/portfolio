@@ -5,6 +5,7 @@ import { ProjectService } from '../../../../core/services/project.service';
 import { StorageService } from '../../../../core/services/storage.service';
 import { ProjectFormValue } from '../../../../core/models/project.model';
 import { slugify } from '../../../../core/utils/slugify';
+import { coverImageUrl } from '../../../../core/utils/cover-image-url';
 
 @Component({
   selector: 'app-project-form',
@@ -31,6 +32,8 @@ export class ProjectFormComponent {
   readonly selectedFile = signal<File | null>(null);
   readonly previewUrl = signal<string | null>(null);
   readonly fileError = signal<string | null>(null);
+
+  readonly coverImageUrl = coverImageUrl;
 
   private projectId: string | null = null;
   private slugTouchedByUser = false;
@@ -147,7 +150,7 @@ export class ProjectFormComponent {
 
       const file = this.selectedFile();
       if (file) {
-        coverImage = await this.storageService.uploadCoverImage(file, raw.slug);
+        coverImage = await this.storageService.uploadCoverImage(file);
       }
 
       const value: ProjectFormValue = {

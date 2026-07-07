@@ -22,7 +22,7 @@
       @for (project of projects(); track project.id; let first = $first; let last = $last) {
         <div class="project-row" [class.project-row--busy]="busyId() === project.id">
           @if (project.coverImage) {
-            <img class="project-row__thumb" [src]="project.coverImage" [alt]="project.title" />
+            <img class="project-row__thumb" [src]="coverImageUrl(project.coverImage)" [alt]="project.title" />
           } @else {
             <div class="project-row__thumb project-row__thumb--placeholder">{{ project.title.slice(0, 2) }}</div>
           }

@@ -3,6 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { ProjectService } from '../../../../core/services/project.service';
 import { Project } from '../../../../core/models/project.model';
+import { coverImageUrl } from '../../../../core/utils/cover-image-url';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,8 @@ export class DashboardComponent {
   readonly busyId = signal<string | null>(null);
   readonly seeding = signal(false);
   readonly message = signal<string | null>(null);
+
+  readonly coverImageUrl = coverImageUrl;
 
   async toggleVisible(project: Project): Promise<void> {
     if (!project.id) return;

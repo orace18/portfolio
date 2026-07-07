@@ -87,7 +87,7 @@
         }
 
         @if (previewUrl() || existingCoverImage()) {
-          <img class="cover-preview" [src]="previewUrl() || existingCoverImage()" alt="Aperçu de la couverture" />
+          <img class="cover-preview" [src]="previewUrl() || coverImageUrl(existingCoverImage())" alt="Aperçu de la couverture" />
         }
       </div>
 

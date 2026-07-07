@@ -1,20 +1,42 @@
-import { Injectable, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { Auth, User, authState, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
+import { Injectable, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+import { environment } from '../../../environments/environment';
+
+const TOKEN_KEY = 'portfolio_admin_token';
+const EMAIL_KEY = 'portfolio_admin_email';
+
+interface LoginResponse {
+  accessToken: string;
+  email: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly auth = inject(Auth);
+  private readonly http = inject(HttpClient);
 
-  readonly user$: Observable<User | null> = authState(this.auth);
-  readonly currentUser = toSignal(this.user$, { initialValue: null });
+  readonly currentUserEmail = signal<string | null>(localStorage.getItem(EMAIL_KEY));
 
-  async login(email: string, password: string): Promise<void> {
-    await signInWithEmailAndPassword(this.auth, email, password);
+  get token(): string | null {
+    return localStorage.getItem(TOKEN_KEY);
   }
 
-  async logout(): Promise<void> {
-    await signOut(this.auth);
+  isLoggedIn(): boolean {
+    return !!this.token;
+  }
+
+  async login(email: string, password: string): Promise<void> {
+    const response = await firstValueFrom(
+      this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, { email, password })
+    );
+    localStorage.setItem(TOKEN_KEY, response.accessToken);
+    localStorage.setItem(EMAIL_KEY, response.email);
+    this.currentUserEmail.set(response.email);
+  }
+
+  logout(): void {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(EMAIL_KEY);
+    this.currentUserEmail.set(null);
   }
 }

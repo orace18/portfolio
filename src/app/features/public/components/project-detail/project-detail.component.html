@@ -3,7 +3,7 @@
     <button type="button" class="modal__close" (click)="close()" aria-label="Fermer">✕</button>
 
     @if (project.coverImage) {
-      <img class="modal__image" [src]="project.coverImage" [alt]="project.title" />
+      <img class="modal__image" [src]="coverImageUrl(project.coverImage)" [alt]="project.title" />
     }
 
     <div class="modal__body">

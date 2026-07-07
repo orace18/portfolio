@@ -1,66 +1,39 @@
 import { Injectable, inject } from '@angular/core';
-import {
-  Firestore,
-  addDoc,
-  collection,
-  collectionData,
-  deleteDoc,
-  doc,
-  docData,
-  getDocs,
-  orderBy,
-  query,
-  serverTimestamp,
-  updateDoc,
-  where,
-} from '@angular/fire/firestore';
+import { HttpClient } from '@angular/common/http';
 import { Observable, firstValueFrom } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import { Project, ProjectFormValue } from '../models/project.model';
-import { SEED_PROJECTS } from '../data/seed-projects.data';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
-  private readonly firestore = inject(Firestore);
-  private readonly collectionName = 'projects';
-
-  private get projectsCollection() {
-    return collection(this.firestore, this.collectionName);
-  }
+  private readonly http = inject(HttpClient);
+  private readonly baseUrl = `${environment.apiUrl}/projects`;
 
   /** Projets visibles publiquement, triés par ordre d'affichage. */
   getVisibleProjects(): Observable<Project[]> {
-    const q = query(this.projectsCollection, where('visible', '==', true), orderBy('order', 'asc'));
-    return collectionData(q, { idField: 'id' }) as Observable<Project[]>;
+    return this.http.get<Project[]>(this.baseUrl);
   }
 
   /** Tous les projets (admin), triés par ordre d'affichage. */
   getAllProjects(): Observable<Project[]> {
-    const q = query(this.projectsCollection, orderBy('order', 'asc'));
-    return collectionData(q, { idField: 'id' }) as Observable<Project[]>;
+    return this.http.get<Project[]>(`${this.baseUrl}/admin`);
   }
 
-  getProjectById(id: string): Observable<Project | undefined> {
-    const ref = doc(this.firestore, this.collectionName, id);
-    return docData(ref, { idField: 'id' }) as Observable<Project | undefined>;
+  getProjectById(id: string): Observable<Project> {
+    return this.http.get<Project>(`${this.baseUrl}/${id}`);
   }
 
   async createProject(value: ProjectFormValue): Promise<string> {
-    const ref = await addDoc(this.projectsCollection, {
-      ...value,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-    });
-    return ref.id;
+    const project = await firstValueFrom(this.http.post<Project>(this.baseUrl, value));
+    return project.id;
   }
 
   async updateProject(id: string, value: Partial<ProjectFormValue>): Promise<void> {
-    const ref = doc(this.firestore, this.collectionName, id);
-    await updateDoc(ref, { ...value, updatedAt: serverTimestamp() });
+    await firstValueFrom(this.http.patch<Project>(`${this.baseUrl}/${id}`, value));
   }
 
   async deleteProject(id: string): Promise<void> {
-    const ref = doc(this.firestore, this.collectionName, id);
-    await deleteDoc(ref);
+    await firstValueFrom(this.http.delete<void>(`${this.baseUrl}/${id}`));
   }
 
   async setVisible(id: string, visible: boolean): Promise<void> {
@@ -73,14 +46,8 @@ export class ProjectService {
 
   /** Insère les projets de démarrage si la collection est vide. */
   async seedIfEmpty(): Promise<number> {
-    const snapshot = await getDocs(this.projectsCollection);
-    if (!snapshot.empty) {
-      return 0;
-    }
-    for (const project of SEED_PROJECTS) {
-      await this.createProject(project);
-    }
-    return SEED_PROJECTS.length;
+    const result = await firstValueFrom(this.http.post<{ count: number }>(`${this.baseUrl}/seed`, {}));
+    return result.count;
   }
 
   async fetchAllOnce(): Promise<Project[]> {
