@@ -83,7 +83,38 @@
 .timeline__place {
   color: var(--color-text-secondary);
   font-size: 0.9rem;
+  margin: 0 0 0.5em;
+}
+
+.timeline__description {
+  color: var(--color-text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.5;
   margin: 0;
+}
+
+.timeline__badge {
+  display: inline-block;
+  background: var(--color-slate);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 0.6em;
+}
+
+.timeline__item--formation .timeline__marker {
+  background: var(--color-slate);
+  box-shadow: 0 0 0 2px var(--color-slate);
+}
+
+.timeline__item--formation .timeline__content {
+  background: var(--color-bg-tint-warm);
+  border-color: var(--color-accent);
+  border-style: dashed;
 }
 
 @media (max-width: 700px) {

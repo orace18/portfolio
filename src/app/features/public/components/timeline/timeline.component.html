@@ -8,14 +8,19 @@
         <li
           class="timeline__item"
           [class.timeline__item--right]="i % 2 === 1"
+          [class.timeline__item--formation]="item.type === 'formation'"
           appScrollReveal
           [revealFrom]="i % 2 === 1 ? 'right' : 'left'"
         >
           <div class="timeline__marker"></div>
           <div class="timeline__content">
+            @if (item.type === 'formation') {
+              <span class="timeline__badge">Formation</span>
+            }
             <span class="timeline__period">{{ item.period }}</span>
             <h3 class="timeline__title">{{ item.title }}</h3>
             <p class="timeline__place">{{ item.place }}</p>
+            <p class="timeline__description">{{ item.description }}</p>
           </div>
         </li>
       }

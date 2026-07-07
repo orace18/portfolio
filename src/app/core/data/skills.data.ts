@@ -10,8 +10,12 @@ export const SKILLS: SkillGroup[] = [
     skills: ['Node.js', 'NestJS', 'FastAPI', 'Spring Boot', 'API REST', 'WebSockets', 'JWT', 'Swagger'],
   },
   {
+    category: 'Web',
+    skills: ['Angular', 'TypeScript', 'SCSS'],
+  },
+  {
     category: 'Bases de données',
-    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis'],
+    skills: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Neo4j'],
   },
   {
     category: 'Paiement mobile',

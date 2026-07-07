@@ -75,9 +75,9 @@ L'application est disponible sur `http://localhost:4200`. Connectez-vous sur
 ## 6. Importer les données de démarrage
 
 Depuis le dashboard admin (`/admin`), cliquez sur **"Importer les données de départ"**
-si la liste de projets est vide : cela insère les 7 projets de démarrage dans Firestore
-(GazFacile, BeChat, Kalltake, Kimo, Vote Event, Espace Show+, Eranou). Les champs Play
-Store et GitHub sont volontairement vides ; complétez-les ensuite via le formulaire
+si la liste de projets est vide : cela insère les 10 projets de démarrage dans Firestore
+(GazFacile, BeChat, oTrip, Kalltake, TonDi, Kimo, Vote Event, Espace Show+, Eranou,
+Traffic IA). Les champs Play Store et GitHub sont volontairement vides ; complétez-les ensuite via le formulaire
 d'édition de chaque projet. Ajoutez également une image de couverture pour chaque projet
 depuis le formulaire (upload vers Firebase Storage, 2 Mo max, JPEG/PNG/WebP).
 
