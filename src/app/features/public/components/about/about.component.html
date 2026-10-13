@@ -21,12 +21,14 @@
       </p>
     </div>
 
-    <div class="about__mosaic">
-      @for (photo of photos; track photo.src; let i = $index) {
-        <figure class="about__tile about__tile--{{ photo.tile }}" appScrollReveal [revealDelay]="i * 90">
-          <img [src]="photo.src" [alt]="photo.alt" loading="lazy" />
-        </figure>
-      }
+    <div class="about__stage">
+      <div class="about__mosaic" [style.transform]="mosaicTransform">
+        @for (photo of photos; track photo.src) {
+          <figure class="about__tile about__tile--{{ photo.tile }}">
+            <img [src]="photo.src" [alt]="photo.alt" loading="lazy" />
+          </figure>
+        }
+      </div>
     </div>
   </div>
 </section>

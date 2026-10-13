@@ -1,4 +1,5 @@
 .about {
+  overflow: hidden;
   background: var(--color-slate);
   color: #fff;
 }
@@ -33,26 +34,40 @@
   }
 }
 
-// Mosaïque asymétrique : 4 colonnes × 2 rangées, tuiles de tailles différentes.
+// Mosaïque en perspective : la grille entière est inclinée en 3D et se redresse au défilement.
 //  ┌────┬─────────┬────┐
 //  │ A  │    B    │    │
-//  │    ├────┬────┤ C  │
-//  │    │ D  │ E  │    │
-//  └────┴────┴────┴────┘
+//  │    ├─────────┤ E  │
+//  ├────┤    D    │    │
+//  │ F  │         │    │
+//  └────┴─────────┴────┘
+.about__stage {
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  padding: 40px 0 20px;
+  margin: 0 -24px;
+}
+
 .about__mosaic {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 280px;
+  grid-auto-rows: 150px;
   gap: 14px;
+  max-width: 1000px;
+  margin: 0 auto;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .about__tile {
   position: relative;
   margin: 0;
   overflow: hidden;
-  border-radius: var(--radius);
+  border-radius: 6px;
   background: var(--color-slate-light);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 
   img {
     display: block;
@@ -60,86 +75,56 @@
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
-    transition: transform 600ms ease;
   }
 
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(14, 20, 30, 0.45));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 45%, rgba(14, 20, 30, 0.35));
     pointer-events: none;
-    transition: opacity var(--transition-base);
-  }
-
-  &:hover img {
-    transform: scale(1.06);
-  }
-
-  &:hover::after {
-    opacity: 0;
   }
 }
 
 .about__tile--tall-left {
   grid-column: 1;
-  grid-row: 1 / span 2;
+  grid-row: 1 / span 3;
+}
+
+.about__tile--small-left {
+  grid-column: 1;
+  grid-row: 4;
 }
 
 .about__tile--wide {
   grid-column: 2 / span 2;
-  grid-row: 1;
+  grid-row: 1 / span 2;
+}
+
+.about__tile--duo {
+  grid-column: 2 / span 2;
+  grid-row: 3 / span 2;
 }
 
 .about__tile--tall-right {
   grid-column: 4;
-  grid-row: 1 / span 2;
-}
-
-.about__tile--small-a {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.about__tile--small-b {
-  grid-column: 3;
-  grid-row: 2;
+  grid-row: 1 / span 4;
 }
 
 @media (max-width: 860px) {
+  .about__stage {
+    margin: 0 -12px;
+    padding-top: 24px;
+  }
+
   .about__mosaic {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 200px;
-    gap: 10px;
+    grid-auto-rows: 96px;
+    gap: 8px;
   }
+}
 
-  .about__tile--tall-left {
-    grid-column: 1;
-    grid-row: span 2;
-  }
-
-  .about__tile--wide {
-    grid-column: 2;
-    grid-row: span 1;
-  }
-
-  .about__tile--tall-right {
-    grid-column: 2;
-    grid-row: span 2;
-  }
-
-  .about__tile--small-a {
-    grid-column: 1;
-    grid-row: span 1;
-  }
-
-  // Dernière tuile sur toute la largeur pour ne pas laisser de trou.
-  .about__tile--small-b {
-    grid-column: 1 / -1;
-    grid-row: span 1;
-
-    img {
-      object-position: center 18%;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .about__mosaic {
+    transform: rotateX(14deg) rotateY(-10deg) rotateZ(3deg) !important;
   }
 }
