@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 
 interface NavLink {
   label: string;
@@ -13,6 +13,13 @@ interface NavLink {
 })
 export class HeaderComponent {
   readonly menuOpen = signal(false);
+  /** Header transparent sur le hero, plein dès qu'on défile. */
+  readonly scrolled = signal(false);
+
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.scrolled.set(window.scrollY > 40);
+  }
 
   readonly navLinks: NavLink[] = [
     { label: 'Accueil', fragment: 'accueil' },

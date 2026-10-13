@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header" [class.header--solid]="scrolled() || menuOpen()">
   <div class="container header__inner">
     <a href="#accueil" class="header__logo" (click)="closeMenu()">OE</a>
 
