@@ -17,6 +17,7 @@ export class ProjectLinks {
 
 @Schema({
   timestamps: true,
+  minimize: false,
   collection: 'projects',
   toJSON: {
     virtuals: true,

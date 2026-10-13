@@ -16,7 +16,7 @@ export class AboutComponent {
   readonly photos: AboutPhoto[] = [
     { src: 'photos/about-laptop.jpg', alt: 'Orace EDJO concentré devant son ordinateur' },
     { src: 'photos/about-style.jpg', alt: 'Portrait en tenue traditionnelle' },
-    { src: 'photos/about-work.jpg', alt: 'Orace EDJO en plein développement' },
+    { src: 'photos/about-portrait.jpg', alt: 'Portrait d\'Orace EDJO en chemise à carreaux' },
     { src: 'photos/about-event.jpg', alt: 'Orace EDJO lors d\'un événement Betogether' },
   ];
 }

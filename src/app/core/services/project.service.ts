@@ -1,8 +1,11 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Project, ProjectFormValue } from '../models/project.model';
+
+/** Mongo n'enregistre pas un objet vide : un projet sans lien arrive sans champ `links`. */
+const withLinks = (project: Project): Project => ({ ...project, links: project.links ?? {} });
 
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
@@ -11,16 +14,16 @@ export class ProjectService {
 
   /** Projets visibles publiquement, triés par ordre d'affichage. */
   getVisibleProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.baseUrl);
+    return this.http.get<Project[]>(this.baseUrl).pipe(map((projects) => projects.map(withLinks)));
   }
 
   /** Tous les projets (admin), triés par ordre d'affichage. */
   getAllProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${this.baseUrl}/admin`);
+    return this.http.get<Project[]>(`${this.baseUrl}/admin`).pipe(map((projects) => projects.map(withLinks)));
   }
 
   getProjectById(id: string): Observable<Project> {
-    return this.http.get<Project>(`${this.baseUrl}/${id}`);
+    return this.http.get<Project>(`${this.baseUrl}/${id}`).pipe(map(withLinks));
   }
 
   async createProject(value: ProjectFormValue): Promise<string> {
