@@ -45,12 +45,23 @@ export class ProjectsService {
     }
   }
 
+  /** Ajoute les projets de départ absents (par slug) et complète le lien GitHub manquant. */
   async seedIfEmpty(): Promise<number> {
-    const count = await this.projectModel.countDocuments().exec();
-    if (count > 0) {
-      return 0;
+    const existing = await this.projectModel.find().exec();
+    const bySlug = new Map(existing.map((project) => [project.slug, project]));
+
+    const missing = SEED_PROJECTS.filter((seed) => !bySlug.has(seed.slug));
+    if (missing.length > 0) {
+      await this.projectModel.insertMany(missing);
     }
-    await this.projectModel.insertMany(SEED_PROJECTS);
-    return SEED_PROJECTS.length;
+
+    for (const seed of SEED_PROJECTS) {
+      const current = bySlug.get(seed.slug);
+      if (current && !current.links?.github && seed.links.github) {
+        current.links = { ...current.links, github: seed.links.github };
+        await current.save();
+      }
+    }
+    return missing.length;
   }
 }

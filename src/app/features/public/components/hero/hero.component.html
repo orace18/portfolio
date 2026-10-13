@@ -5,12 +5,13 @@
     <span class="hero__blob hero__blob--accent-2"></span>
   </div>
 
-  <div class="container hero__inner">
-    <p class="hero__eyebrow">Développeur Full Stack · Flutter &amp; Backend</p>
+  <div class="container hero__inner" [class.hero__inner--with-photo]="photoLoaded()">
+    <div class="hero__content">
+    <p class="hero__eyebrow">Développeur Full Stack</p>
     <h1 class="hero__title">Orace EDJO</h1>
     <p class="hero__tagline">
-      3 ans d'expérience en développement mobile et backend, spécialiste du paiement mobile
-      en Afrique de l'Ouest. Je conçois des applications Flutter et des APIs robustes,
+      3 ans d'expérience en développement web, mobile et backend, spécialiste du paiement
+      mobile en Afrique de l'Ouest. Je conçois des applications et des APIs robustes,
       de l'idée à la mise en production.
     </p>
     <div class="hero__cta">
@@ -19,5 +20,18 @@
       </a>
       <a href="#projets" class="btn btn-secondary">Voir mes projets</a>
     </div>
+    </div>
+
+    <figure class="hero__photo" [hidden]="!photoLoaded()">
+      <img
+        src="photos/hero.jpg"
+        alt="Portrait d'Orace EDJO, développeur Full Stack"
+        width="380"
+        height="380"
+        fetchpriority="high"
+        (load)="photoLoaded.set(true)"
+        (error)="photoLoaded.set(false)"
+      />
+    </figure>
   </div>
 </section>

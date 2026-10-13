@@ -1,0 +1,16 @@
+<section id="a-propos" class="about section">
+  <div class="container">
+    <h2 class="section-title" appScrollReveal>À propos</h2>
+    <p class="section-subtitle" appScrollReveal>
+      Développeur basé au Bénin, passionné par les produits qui simplifient le quotidien.
+    </p>
+
+    <div class="about__gallery">
+      @for (photo of photos; track photo.src; let i = $index) {
+        <figure class="about__photo" appScrollReveal [revealDelay]="i * 80">
+          <img [src]="photo.src" [alt]="photo.alt" loading="lazy" />
+        </figure>
+      }
+    </div>
+  </div>
+</section>

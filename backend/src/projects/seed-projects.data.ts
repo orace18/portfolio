@@ -24,7 +24,7 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
     longDescription:
       "BeChat est le microservice de messagerie de BeTogether (Africa Solidarity), que je conçois et livre en autonomie complète en tant que Lead Backend. Il gère le chat individuel et de groupe ainsi que les appels audio et vidéo via LiveKit, avec des notifications push délivrées par Firebase FCM. Le service embarque des fonctionnalités avancées : transcription audio avec OpenAI Whisper, traduction automatique via DeepL, et recherche vectorielle grâce à pgvector. Les tâches planifiées sont orchestrées avec Celery Beat, sur une architecture FastAPI, PostgreSQL et Redis Pub/Sub, conteneurisée avec Docker. Le service expose aujourd'hui 111 endpoints testés et actifs en production.",
     stack: ['FastAPI', 'PostgreSQL', 'Redis', 'WebSockets', 'LiveKit', 'Docker'],
-    links: {},
+    links: { github: 'https://github.com/orace18/kakaye' },
     coverImage: '',
     visible: true,
     order: 2,
@@ -46,9 +46,9 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
     slug: 'kalltake',
     shortDescription: 'Plateforme de mobilité avec gestion complète des conducteurs et paiement mobile intégré.',
     longDescription:
-      "Kalltake est une plateforme de mobilité pour laquelle j'ai conçu, chez WonderTeck, le backend complet avec NestJS. Il couvre les inscriptions, les profils et la gestion des disponibilités des conducteurs, avec une authentification sécurisée par JWT et refresh token. L'intégration Mobile Money MTN et Moov gère l'initiation des paiements, les callbacks et la réconciliation, et un système de parrainage calcule automatiquement les commissions. L'API est entièrement documentée avec Swagger et consommée par l'application mobile associée, avec persistance des données via TypeORM sur PostgreSQL.",
-    stack: ['NestJS', 'TypeScript', 'PostgreSQL', 'TypeORM'],
-    links: {},
+      "Kalltake est une plateforme de mobilité pour laquelle j'ai conçu, chez WonderTeck, le backend complet avec NestJS. Il couvre les inscriptions, les profils et la gestion des disponibilités des conducteurs, avec une authentification sécurisée par JWT et refresh token. L'intégration Mobile Money MTN et Moov gère l'initiation des paiements, les callbacks et la réconciliation, et un système de parrainage calcule automatiquement les commissions. L'API est entièrement documentée avec Swagger et consommée par l'application mobile associée avec persistance des données sur MongoDB et temps réel via Socket.IO. J'ai aussi contribué à l'outil d'administration Angular (PrimeNG, Chart.js) : https://github.com/orace18/zpickup_contribution.",
+    stack: ['NestJS', 'TypeScript', 'MongoDB', 'Socket.IO', 'Firebase', 'Angular', 'Swagger'],
+    links: { github: 'https://github.com/orace18/zpickup_contribution_backend' },
     coverImage: '',
     visible: true,
     order: 4,
@@ -163,30 +163,6 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
     order: 13,
   },
   {
-    title: 'ZPickup — Admin',
-    slug: 'zpickup-admin',
-    shortDescription: "Interface d'administration Angular pour la plateforme ZPickup, avec tableaux de bord et graphiques.",
-    longDescription:
-      "Contribution à l'outil d'administration de ZPickup, une application web Angular 19 en TypeScript. L'interface utilise PrimeNG et Bootstrap pour les composants, Chart.js pour les tableaux de bord et ngx-toastr pour les notifications, et consomme l'API backend de la plateforme.",
-    stack: ['Angular', 'TypeScript', 'PrimeNG', 'Bootstrap', 'Chart.js'],
-    links: { github: 'https://github.com/orace18/zpickup_contribution' },
-    coverImage: '',
-    visible: true,
-    order: 14,
-  },
-  {
-    title: 'ZPickup — Backend',
-    slug: 'zpickup-backend',
-    shortDescription: 'API NestJS temps réel avec MongoDB, authentification JWT et notifications push.',
-    longDescription:
-      "Contribution au backend de ZPickup, une API NestJS en TypeScript. Elle utilise MongoDB via Mongoose, l'authentification JWT avec Passport, la communication temps réel avec Socket.IO, des tâches planifiées, les notifications push Firebase et une documentation Swagger.",
-    stack: ['NestJS', 'TypeScript', 'MongoDB', 'Socket.IO', 'JWT', 'Firebase', 'Swagger'],
-    links: { github: 'https://github.com/orace18/zpickup_contribution_backend' },
-    coverImage: '',
-    visible: true,
-    order: 15,
-  },
-  {
     title: "Dosage d'engrais",
     slug: 'dosage-engrais',
     shortDescription: "Logiciel de bureau JavaFX qui calcule les quantités d'engrais (N, P, K) à apporter à une plante.",
@@ -196,6 +172,6 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
     links: { github: 'https://github.com/orace18/Dosage-d-engrais' },
     coverImage: '',
     visible: true,
-    order: 16,
+    order: 14,
   },
 ];

@@ -81,8 +81,8 @@ export class DashboardComponent {
       const count = await this.projectService.seedIfEmpty();
       this.message.set(
         count > 0
-          ? `${count} projets de démarrage importés.`
-          : 'La collection contient déjà des projets, import ignoré.'
+          ? `${count} projet(s) ajouté(s), liens GitHub complétés.`
+          : 'Aucun projet manquant, liens GitHub à jour.'
       );
     } finally {
       this.seeding.set(false);

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-hero',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
+  readonly photoLoaded = signal(false);
   readonly whatsappLink = 'https://wa.me/2290168894947';
 }

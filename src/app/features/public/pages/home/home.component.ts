@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../../components/header/header.component';
 import { HeroComponent } from '../../components/hero/hero.component';
+import { AboutComponent } from '../../components/about/about.component';
 import { ProjectsComponent } from '../../components/projects/projects.component';
 import { SkillsComponent } from '../../components/skills/skills.component';
 import { TimelineComponent } from '../../components/timeline/timeline.component';
@@ -13,6 +14,7 @@ import { DividerComponent } from '../../../../shared/components/divider/divider.
   imports: [
     HeaderComponent,
     HeroComponent,
+    AboutComponent,
     ProjectsComponent,
     SkillsComponent,
     TimelineComponent,

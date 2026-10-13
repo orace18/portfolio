@@ -5,7 +5,7 @@ export const routes: Routes = [
     path: '',
     loadComponent: () =>
       import('./features/public/pages/home/home.component').then((m) => m.HomeComponent),
-    title: 'Orace EDJO — Développeur Full Stack Flutter & Backend | Bénin',
+    title: 'Orace EDJO — Développeur Full Stack | Bénin',
   },
   {
     path: 'admin',

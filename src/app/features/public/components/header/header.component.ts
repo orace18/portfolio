@@ -16,6 +16,7 @@ export class HeaderComponent {
 
   readonly navLinks: NavLink[] = [
     { label: 'Accueil', fragment: 'accueil' },
+    { label: 'À propos', fragment: 'a-propos' },
     { label: 'Projets', fragment: 'projets' },
     { label: 'Compétences', fragment: 'competences' },
     { label: 'Parcours', fragment: 'parcours' },
