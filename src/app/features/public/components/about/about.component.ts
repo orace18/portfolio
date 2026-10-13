@@ -21,7 +21,7 @@ export class AboutComponent {
     { src: 'photos/about-style.jpg', alt: 'Portrait en tenue traditionnelle', tile: 'tall-left' },
     { src: 'photos/about-work.jpg', alt: 'Orace EDJO au travail', tile: 'small-left' },
     { src: 'photos/about-laptop.jpg', alt: 'Orace EDJO concentré devant son ordinateur', tile: 'wide' },
-    { src: 'photos/about-portrait.jpg', alt: "Portrait d'Orace EDJO en chemise à carreaux", tile: 'duo' },
+    { src: 'photos/about-phone.jpg', alt: 'Orace EDJO, le téléphone à la main', tile: 'duo' },
     { src: 'photos/about-event.jpg', alt: "Orace EDJO lors d'un événement Betogether", tile: 'tall-right' },
   ];
 
