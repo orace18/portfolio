@@ -1,5 +1,6 @@
 <section id="a-propos" class="about section">
   <div class="container">
+    <p class="about__eyebrow" appScrollReveal>Qui suis-je</p>
     <h2 class="section-title" appScrollReveal>À propos</h2>
     <p class="section-subtitle" appScrollReveal>
       Développeur basé au Bénin, passionné par les produits qui simplifient le quotidien.
@@ -20,9 +21,9 @@
       </p>
     </div>
 
-    <div class="about__gallery">
+    <div class="about__mosaic">
       @for (photo of photos; track photo.src; let i = $index) {
-        <figure class="about__photo" appScrollReveal [revealDelay]="i * 80">
+        <figure class="about__tile about__tile--{{ photo.tile }}" appScrollReveal [revealDelay]="i * 90">
           <img [src]="photo.src" [alt]="photo.alt" loading="lazy" />
         </figure>
       }

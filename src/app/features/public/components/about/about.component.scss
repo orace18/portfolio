@@ -1,12 +1,31 @@
 .about {
-  background: var(--color-bg-tint-cool);
+  background: var(--color-slate);
+  color: #fff;
+}
+
+.about__eyebrow {
+  text-align: center;
+  margin-bottom: 0.6em;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.about .section-title {
+  color: #fff;
+}
+
+.about .section-subtitle {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .about__text {
   max-width: 720px;
-  margin: 0 auto 40px;
+  margin: 0 auto 56px;
   text-align: center;
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.78);
   font-size: 1.05rem;
 
   p + p {
@@ -14,19 +33,26 @@
   }
 }
 
-.about__gallery {
+// Mosaïque asymétrique : 4 colonnes × 2 rangées, tuiles de tailles différentes.
+//  ┌────┬─────────┬────┐
+//  │ A  │    B    │    │
+//  │    ├────┬────┤ C  │
+//  │    │ D  │ E  │    │
+//  └────┴────┴────┴────┘
+.about__mosaic {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-auto-rows: 280px;
+  gap: 14px;
 }
 
-.about__photo {
+.about__tile {
+  position: relative;
   margin: 0;
-  aspect-ratio: 3 / 4;
-  border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  border-radius: var(--radius);
+  background: var(--color-slate-light);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
   img {
     display: block;
@@ -34,16 +60,86 @@
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
+    transition: transform 600ms ease;
   }
 
-  &:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(14, 20, 30, 0.45));
+    pointer-events: none;
+    transition: opacity var(--transition-base);
+  }
+
+  &:hover img {
+    transform: scale(1.06);
+  }
+
+  &:hover::after {
+    opacity: 0;
   }
 }
 
+.about__tile--tall-left {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.about__tile--wide {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+}
+
+.about__tile--tall-right {
+  grid-column: 4;
+  grid-row: 1 / span 2;
+}
+
+.about__tile--small-a {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.about__tile--small-b {
+  grid-column: 3;
+  grid-row: 2;
+}
+
 @media (max-width: 860px) {
-  .about__gallery {
+  .about__mosaic {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+    gap: 10px;
+  }
+
+  .about__tile--tall-left {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+
+  .about__tile--wide {
+    grid-column: 2;
+    grid-row: span 1;
+  }
+
+  .about__tile--tall-right {
+    grid-column: 2;
+    grid-row: span 2;
+  }
+
+  .about__tile--small-a {
+    grid-column: 1;
+    grid-row: span 1;
+  }
+
+  // Dernière tuile sur toute la largeur pour ne pas laisser de trou.
+  .about__tile--small-b {
+    grid-column: 1 / -1;
+    grid-row: span 1;
+
+    img {
+      object-position: center 18%;
+    }
   }
 }
