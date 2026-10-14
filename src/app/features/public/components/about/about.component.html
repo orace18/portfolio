@@ -1,34 +1,39 @@
-<section id="a-propos" class="about section">
-  <div class="container">
-    <p class="about__eyebrow" appScrollReveal>Qui suis-je</p>
-    <h2 class="section-title" appScrollReveal>À propos</h2>
-    <p class="section-subtitle" appScrollReveal>
-      Développeur basé au Bénin, passionné par les produits qui simplifient le quotidien.
-    </p>
-
-    <div class="about__text" appScrollReveal>
-      <p>
-        Je suis Orace EDJO, développeur Full Stack basé au Bénin. Depuis trois ans, je conçois des
-        applications web et mobiles ainsi que les APIs qui les font tourner, de l'idée jusqu'à la
-        mise en production.
-      </p>
-      <p>
-        J'ai une affection particulière pour les paiements mobiles (MTN MoMo, Moov Money) et pour
-        les produits qui répondent à de vrais besoins en Afrique de l'Ouest : mobilité, commerce,
-        événementiel, messagerie. Je travaille aussi bien sur le mobile avec Flutter que sur le
-        backend avec Spring Boot, NestJS ou FastAPI, et j'aime comprendre le besoin avant d'écrire
-        la première ligne de code.
-      </p>
+<section id="a-propos" class="about">
+  <!-- Fond : la mosaïque de photos, inclinée en 3D, qui se redresse au défilement. -->
+  <div class="about__bg" aria-hidden="true">
+    <div class="about__mosaic" [style.transform]="mosaicTransform">
+      @for (photo of photos; track photo.src) {
+        <figure class="about__tile about__tile--{{ photo.tile }}">
+          <img [src]="photo.src" alt="" loading="lazy" />
+        </figure>
+      }
     </div>
+  </div>
+  <div class="about__veil" aria-hidden="true"></div>
 
-    <div class="about__stage">
-      <div class="about__mosaic" [style.transform]="mosaicTransform">
-        @for (photo of photos; track photo.src) {
-          <figure class="about__tile about__tile--{{ photo.tile }}">
-            <img [src]="photo.src" [alt]="photo.alt" loading="lazy" />
-          </figure>
+  <div class="container about__content">
+    <p class="about__eyebrow" appScrollReveal>Qui suis-je</p>
+    <h2 class="about__title" appScrollReveal>À <span>propos</span></h2>
+
+    <div class="about__panel" appScrollReveal>
+      <p class="about__lead">
+        Je suis <strong>Orace EDJO</strong>, développeur <strong>Full Stack</strong> basé au Bénin.
+        Depuis trois ans, je conçois des <strong>applications web et mobiles</strong> et les
+        <strong>APIs</strong> qui les font tourner, de l'idée jusqu'à la mise en production.
+      </p>
+      <p class="about__body">
+        J'ai une affection particulière pour les <strong>paiements mobiles</strong> (MTN MoMo, Moov
+        Money) et pour les produits qui répondent à de vrais besoins en Afrique de l'Ouest :
+        mobilité, commerce, événementiel, messagerie. Je travaille aussi bien sur le mobile avec
+        Flutter que sur le backend avec Spring Boot, NestJS ou FastAPI, et j'aime comprendre le
+        besoin avant d'écrire la première ligne de code.
+      </p>
+
+      <ul class="about__facts">
+        @for (fact of facts; track fact) {
+          <li>{{ fact }}</li>
         }
-      </div>
+      </ul>
     </div>
   </div>
 </section>

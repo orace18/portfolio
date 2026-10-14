@@ -46,6 +46,9 @@ export class AboutComponent {
     this.progress.set(Math.min(1, Math.max(0, raw)));
   }
 
+  /** Mots-clés affichés en pastilles sous le texte. */
+  readonly facts = ["3 ans d'expérience", 'Bénin', 'Paiement mobile', 'Flutter', 'Spring Boot', 'NestJS', 'FastAPI'];
+
   /** Inclinaison 3D : forte à l'arrivée, presque à plat au centre de l'écran. */
   get mosaicTransform(): string {
     const t = this.progress();

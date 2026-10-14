@@ -109,20 +109,76 @@
 }
 
 .hero__title {
+  font-family: var(--font-display);
   color: #fff;
-  font-size: clamp(2.8rem, 7vw, 4.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.35em;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+  font-size: clamp(3rem, 8vw, 5.4rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  margin-bottom: 0.3em;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.45);
+
+  span {
+    background: linear-gradient(100deg, #ffb170 0%, var(--color-accent) 55%, #ff8a3d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
+  }
 }
 
+// Texte tapé
 .hero__tagline {
-  max-width: 560px;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: 1.12rem;
+  position: relative;
+  max-width: 580px;
   margin-bottom: 2.2em;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.1vw, 1.38rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55);
+}
+
+.hero__tagline-sizer {
+  display: block;
+  visibility: hidden;
+}
+
+.hero__tagline-live {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__hl {
+  color: #ffb170;
+  font-weight: 700;
+}
+
+.hero__caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+  animation: hero-caret 0.9s steps(1) infinite;
+}
+
+.hero__caret--idle {
+  animation-duration: 1.2s;
+}
+
+@keyframes hero-caret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
 }
 
 .hero__cta {
@@ -142,15 +198,27 @@
   }
 }
 
+// Portrait "spectre" : le cadre flotte, une aura pulse et des échos fantomatiques s'en échappent.
 .hero__photo {
+  position: relative;
   margin: 0;
   justify-self: center;
   width: min(100%, 360px);
   aspect-ratio: 1;
+  isolation: isolate;
+}
+
+.hero__photo-main {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
   border-radius: 50%;
   padding: 6px;
   background: linear-gradient(135deg, var(--color-accent), #ffd2a6 55%, var(--color-accent-dark));
-  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.12), 0 28px 70px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1), 0 28px 70px rgba(0, 0, 0, 0.5);
+  animation: ghost-float 6s ease-in-out infinite, ghost-aura 3.6s ease-in-out infinite,
+    ghost-flicker 7s linear infinite;
 
   img {
     display: block;
@@ -160,6 +228,103 @@
     object-fit: cover;
     object-position: center 20%;
     border: 5px solid rgba(14, 20, 30, 0.9);
+  }
+}
+
+.hero__ghost {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  border-radius: 50%;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(3px) saturate(1.6) hue-rotate(165deg) brightness(1.25);
+  animation: ghost-echo 5.4s ease-out infinite;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+}
+
+.hero__ghost--2 {
+  animation-delay: 1.8s;
+  filter: blur(5px) saturate(1.8) hue-rotate(20deg) brightness(1.3);
+}
+
+.hero__ghost--3 {
+  animation-delay: 3.6s;
+}
+
+@keyframes ghost-echo {
+  0% {
+    opacity: 0.55;
+    transform: translate(0, 0) scale(1);
+  }
+  70% {
+    opacity: 0.08;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-14px, -22px) scale(1.5);
+  }
+}
+
+@keyframes ghost-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0.8deg);
+  }
+}
+
+@keyframes ghost-aura {
+  0%,
+  100% {
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.08), 0 0 40px 6px rgba(224, 120, 32, 0.35),
+      0 28px 70px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(255, 255, 255, 0.14), 0 0 80px 18px rgba(120, 190, 255, 0.45),
+      0 28px 70px rgba(0, 0, 0, 0.5);
+  }
+}
+
+// Brève "apparition" de temps en temps, comme un spectre qui vacille.
+@keyframes ghost-flicker {
+  0%,
+  88%,
+  92%,
+  100% {
+    filter: none;
+  }
+  89% {
+    filter: brightness(1.5) saturate(0.4) hue-rotate(160deg);
+  }
+  90% {
+    filter: brightness(0.8);
+  }
+  91% {
+    filter: brightness(1.4) hue-rotate(160deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__ghost {
+    display: none;
+  }
+
+  .hero__photo-main,
+  .hero__caret {
+    animation: none;
   }
 }
 

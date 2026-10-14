@@ -1,73 +1,47 @@
 .about {
+  position: relative;
   overflow: hidden;
+  padding: 120px 0;
   background: var(--color-slate);
   color: #fff;
 }
 
-.about__eyebrow {
-  text-align: center;
-  margin-bottom: 0.6em;
-  color: var(--color-accent);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+// ---- Fond : mosaïque en perspective, plus large que la section pour ne jamais montrer de bords ----
+.about__bg {
+  position: absolute;
+  inset: 0;
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
 }
 
-.about .section-title {
-  color: #fff;
+.about__mosaic {
+  position: absolute;
+  top: -14%;
+  left: -12%;
+  width: 124%;
+  height: 128%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 14px;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.about .section-subtitle {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.about__text {
-  max-width: 720px;
-  margin: 0 auto 56px;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 1.05rem;
-
-  p + p {
-    margin-top: 1em;
-  }
-}
-
-// Mosaïque en perspective : la grille entière est inclinée en 3D et se redresse au défilement.
 //  ┌────┬─────────┬────┐
 //  │ A  │    B    │    │
 //  │    ├─────────┤ E  │
 //  ├────┤    D    │    │
 //  │ F  │         │    │
 //  └────┴─────────┴────┘
-.about__stage {
-  perspective: 1400px;
-  perspective-origin: 50% 40%;
-  padding: 40px 0 20px;
-  margin: 0 -24px;
-}
-
-.about__mosaic {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 150px;
-  gap: 14px;
-  max-width: 1000px;
-  margin: 0 auto;
-  transform-origin: 50% 50%;
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
 .about__tile {
   position: relative;
   margin: 0;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--color-slate-light);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 
   img {
     display: block;
@@ -75,14 +49,6 @@
     height: 100%;
     object-fit: cover;
     object-position: center 20%;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 45%, rgba(14, 20, 30, 0.35));
-    pointer-events: none;
   }
 }
 
@@ -111,14 +77,113 @@
   grid-row: 1 / span 4;
 }
 
+// Voile : sombre au centre pour la lecture, plus léger sur les bords pour laisser voir les photos.
+.about__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 75% at 50% 50%, rgba(14, 20, 30, 0.86) 0%, rgba(14, 20, 30, 0.62) 55%, rgba(14, 20, 30, 0.3) 100%),
+    linear-gradient(180deg, rgba(14, 20, 30, 0.55) 0%, transparent 18%, transparent 82%, rgba(14, 20, 30, 0.55) 100%);
+}
+
+// ---- Texte au premier plan ----
+.about__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.about__eyebrow {
+  margin-bottom: 0.7em;
+  color: #ffb170;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.about__title {
+  margin-bottom: 0.45em;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.55);
+
+  span {
+    background: linear-gradient(100deg, #ffb170 0%, var(--color-accent) 60%, #ff8a3d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.about__panel {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: clamp(26px, 5vw, 52px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  background: rgba(14, 20, 30, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  text-align: left;
+}
+
+.about__lead {
+  margin-bottom: 1em;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.6vw, 1.65rem);
+  font-weight: 500;
+  line-height: 1.5;
+
+  strong {
+    color: #ffb170;
+    font-weight: 700;
+  }
+}
+
+.about__body {
+  margin-bottom: 1.6em;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  line-height: 1.7;
+
+  strong {
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+.about__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 7px 16px;
+    border: 1px solid rgba(255, 177, 112, 0.5);
+    border-radius: 999px;
+    background: rgba(224, 120, 32, 0.14);
+    color: #ffd2a6;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+}
+
 @media (max-width: 860px) {
-  .about__stage {
-    margin: 0 -12px;
-    padding-top: 24px;
+  .about {
+    padding: 88px 0;
   }
 
   .about__mosaic {
-    grid-auto-rows: 96px;
     gap: 8px;
   }
 }

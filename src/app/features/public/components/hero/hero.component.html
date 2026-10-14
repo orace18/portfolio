@@ -15,31 +15,48 @@
 
   <div class="container hero__inner" [class.hero__inner--with-photo]="photoLoaded()">
     <div class="hero__content">
-    <p class="hero__eyebrow">Développeur Full Stack</p>
-    <h1 class="hero__title">Orace EDJO</h1>
-    <p class="hero__tagline">
-      3 ans d'expérience en développement web, mobile et backend, spécialiste du paiement
-      mobile en Afrique de l'Ouest. Je conçois des applications et des APIs robustes,
-      de l'idée à la mise en production.
-    </p>
-    <div class="hero__cta">
-      <a [href]="whatsappLink" target="_blank" rel="noopener" class="btn btn-primary">
-        Me contacter sur WhatsApp
-      </a>
-      <a href="#projets" class="btn btn-secondary">Voir mes projets</a>
-    </div>
+      <p class="hero__eyebrow">Développeur Full Stack</p>
+      <h1 class="hero__title">Orace <span>EDJO</span></h1>
+
+      <!-- Texte tapé : une copie invisible réserve la hauteur finale pour éviter tout saut de mise en page. -->
+      <p class="hero__tagline" [attr.aria-label]="taglineText">
+        <span class="hero__tagline-sizer" aria-hidden="true">
+          @for (segment of tagline; track $index) {
+            <span [class.hero__hl]="segment.highlight">{{ segment.text }}</span>
+          }
+        </span>
+        <span class="hero__tagline-live" aria-hidden="true">
+          @for (segment of visibleSegments(); track $index) {
+            <span [class.hero__hl]="segment.highlight">{{ segment.text }}</span>
+          }<span class="hero__caret" [class.hero__caret--idle]="typingDone()"></span>
+        </span>
+      </p>
+
+      <div class="hero__cta">
+        <a [href]="whatsappLink" target="_blank" rel="noopener" class="btn btn-primary">
+          Me contacter sur WhatsApp
+        </a>
+        <a href="#projets" class="btn btn-secondary">Voir mes projets</a>
+      </div>
     </div>
 
     <figure class="hero__photo" [hidden]="!photoLoaded()">
-      <img
-        src="photos/hero.jpg"
-        alt="Portrait d'Orace EDJO, développeur Full Stack"
-        width="380"
-        height="380"
-        fetchpriority="high"
-        (load)="photoLoaded.set(true)"
-        (error)="photoLoaded.set(false)"
-      />
+      <!-- Échos "spectre" : copies floues et teintées qui se dissipent autour du portrait. -->
+      <span class="hero__ghost hero__ghost--1" aria-hidden="true"><img src="photos/hero.jpg" alt="" /></span>
+      <span class="hero__ghost hero__ghost--2" aria-hidden="true"><img src="photos/hero.jpg" alt="" /></span>
+      <span class="hero__ghost hero__ghost--3" aria-hidden="true"><img src="photos/hero.jpg" alt="" /></span>
+
+      <span class="hero__photo-main">
+        <img
+          src="photos/hero.jpg"
+          alt="Portrait d'Orace EDJO, développeur Full Stack"
+          width="380"
+          height="380"
+          fetchpriority="high"
+          (load)="photoLoaded.set(true)"
+          (error)="photoLoaded.set(false)"
+        />
+      </span>
     </figure>
   </div>
 </section>
