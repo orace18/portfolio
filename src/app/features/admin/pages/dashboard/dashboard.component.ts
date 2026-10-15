@@ -81,7 +81,7 @@ export class DashboardComponent {
       const count = await this.projectService.seedIfEmpty();
       this.message.set(
         count > 0
-          ? `${count} projet(s) ajouté(s), liens GitHub complétés.`
+          ? `${count} projet(s) ajouté(s) ou mis à jour, liens GitHub complétés.`
           : 'Aucun projet manquant, liens GitHub à jour.'
       );
     } finally {

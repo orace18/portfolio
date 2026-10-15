@@ -6,6 +6,10 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { SEED_PROJECTS } from './seed-projects.data';
 
+/** Fiches détaillées (Contexte / Stack / Rôle), dont TonDi corrigé en front-end Android : remplacées tant que l'ancien texte n'a pas été réécrit. */
+const REFRESHED_SLUGS = ['gazfacile', 'kalltake', 'club-chretien-backend', 'tondi'];
+const REFRESHED_MARKER = 'Contexte :';
+
 @Injectable()
 export class ProjectsService {
   constructor(@InjectModel(Project.name) private readonly projectModel: Model<ProjectDocument>) {}
@@ -45,7 +49,7 @@ export class ProjectsService {
     }
   }
 
-  /** Ajoute les projets de départ absents (par slug) et complète le lien GitHub manquant. */
+  /** Ajoute les projets de départ absents (par slug), complète les liens GitHub manquants et met à jour les fiches détaillées. */
   async seedIfEmpty(): Promise<number> {
     const existing = await this.projectModel.find().exec();
     const bySlug = new Map(existing.map((project) => [project.slug, project]));
@@ -55,13 +59,29 @@ export class ProjectsService {
       await this.projectModel.insertMany(missing);
     }
 
+    let refreshed = 0;
     for (const seed of SEED_PROJECTS) {
       const current = bySlug.get(seed.slug);
-      if (current && !current.links?.github && seed.links.github) {
+      if (!current) {
+        continue;
+      }
+      let changed = false;
+      if (!current.links?.github && seed.links.github) {
         current.links = { ...current.links, github: seed.links.github };
+        changed = true;
+      }
+      if (REFRESHED_SLUGS.includes(seed.slug) && !current.longDescription.startsWith(REFRESHED_MARKER)) {
+        current.title = seed.title;
+        current.shortDescription = seed.shortDescription;
+        current.longDescription = seed.longDescription;
+        current.stack = seed.stack;
+        changed = true;
+        refreshed++;
+      }
+      if (changed) {
         await current.save();
       }
     }
-    return missing.length;
+    return missing.length + refreshed;
   }
 }

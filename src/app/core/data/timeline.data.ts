@@ -35,7 +35,7 @@ export const TIMELINE: TimelineItem[] = [
   {
     period: 'Nov. - Déc. 2024',
     title: 'Administrateur Systèmes',
-    place: 'Techo Bénin',
+    place: 'Techco Bénin',
     description: 'Configuration et sécurisation de serveurs Linux, durcissement des accès.',
     type: 'experience',
   },
@@ -49,10 +49,10 @@ export const TIMELINE: TimelineItem[] = [
   },
   {
     period: 'Mai - Oct. 2024',
-    title: 'Développeur Backend Java',
+    title: 'Développeur Android (Java)',
     place: 'SICMa & Associés, Remote',
     description:
-      'TonDi : APIs REST Spring Boot, intégration Mobile Money (initiation, callbacks, confirmation), JPA/Hibernate.',
+      'TonDi : application Android native en Java, front-end mobile connecté à une API REST, publiée sur le Play Store.',
     type: 'experience',
   },
   {

@@ -89,6 +89,19 @@
 .modal__description {
   color: var(--color-text-secondary);
   margin-bottom: 1.5em;
+
+  p {
+    margin-bottom: 0.9em;
+  }
+}
+
+.modal__label {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .modal__links {

@@ -7,6 +7,7 @@ import { ProjectDetailComponent } from '../project-detail/project-detail.compone
 import { TechBadgeComponent } from '../../../../shared/components/tech-badge/tech-badge.component';
 import { ScrollRevealDirective } from '../../../../shared/directives/scroll-reveal.directive';
 import { coverImageUrl } from '../../../../core/utils/cover-image-url';
+import { codeLinkLabel } from '../../../../core/utils/code-link';
 
 @Component({
   selector: 'app-projects',
@@ -24,6 +25,7 @@ export class ProjectsComponent {
   readonly selectedProject = signal<Project | null>(null);
 
   readonly coverImageUrl = coverImageUrl;
+  readonly codeLinkLabel = codeLinkLabel;
 
   openProject(project: Project): void {
     this.selectedProject.set(project);

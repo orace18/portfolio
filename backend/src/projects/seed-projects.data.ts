@@ -6,11 +6,10 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
   {
     title: 'GazFacile',
     slug: 'gazfacile',
-    shortDescription:
-      'Plateforme complète de commande et livraison de gaz domestique, du catalogue au paiement mobile.',
+    shortDescription: "Plateforme de commande et livraison de gaz domestique, du catalogue au paiement Mobile Money, conçue et développée seul.",
     longDescription:
-      "GazFacile est une plateforme fullstack personnelle qui digitalise la commande et la livraison de gaz domestique. Elle couvre l'ensemble du parcours : catalogue de produits, prise de commande, géolocalisation du client pour organiser la livraison, paiement Mobile Money et espace d'administration pour la gestion des commandes. J'ai conçu et développé ce projet seul de bout en bout — l'API Spring Boot, l'interface Angular, la base MongoDB, la conteneurisation Docker — jusqu'au déploiement sur Oracle Cloud. C'est la démonstration la plus complète de mes compétences fullstack, du backend au déploiement en production.",
-    stack: ['Spring Boot', 'Java 21', 'Angular', 'MongoDB', 'WebSocket', 'JWT', 'Leaflet', 'Docker', 'Mobile Money', 'Oracle Cloud'],
+      "Contexte : projet personnel qui digitalise la commande et la livraison de gaz domestique, du catalogue jusqu'au paiement mobile.\n\nStack : Spring Boot 3 (Java 21), Angular, MongoDB, WebSocket, JWT, Docker Compose, Mobile Money (MTN, Moov, FedaPay) et déploiement sur Oracle Cloud.\n\nMon rôle : conception et développement complets, seul : API, interface Angular, base de données, conteneurisation et déploiement.\n\nPoints clés : catalogue et prise de commande, géolocalisation du client sur carte (Leaflet), paiement Mobile Money, espace d'administration, authentification renforcée (2FA TOTP, refresh token avec rotation).\n\nLien : démo en ligne et code source sur GitHub.",
+    stack: ['Spring Boot', 'Java 21', 'Angular', 'MongoDB', 'WebSocket', 'JWT', 'Mobile Money', 'FedaPay', 'Docker Compose', 'Leaflet', 'Oracle Cloud'],
     links: { live: 'https://gazfacile.netlify.app', github: 'https://github.com/orace18/gazfacile' },
     coverImage: '',
     visible: true,
@@ -44,10 +43,10 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
   {
     title: 'Kalltake',
     slug: 'kalltake',
-    shortDescription: 'Plateforme de mobilité avec gestion complète des conducteurs et paiement mobile intégré.',
+    shortDescription: "Plateforme de mobilité : backend complet de gestion des conducteurs, paiement Mobile Money et back-office Angular.",
     longDescription:
-      "Kalltake est une plateforme de mobilité pour laquelle j'ai conçu, chez WonderTeck, le backend complet avec NestJS. Il couvre les inscriptions, les profils et la gestion des disponibilités des conducteurs, avec une authentification sécurisée par JWT et refresh token. L'intégration Mobile Money MTN et Moov gère l'initiation des paiements, les callbacks et la réconciliation, et un système de parrainage calcule automatiquement les commissions. L'API est entièrement documentée avec Swagger et consommée par l'application mobile associée avec persistance des données sur MongoDB et temps réel via Socket.IO. J'ai aussi contribué à l'outil d'administration Angular (PrimeNG, Chart.js) : https://github.com/orace18/zpickup_contribution.",
-    stack: ['NestJS', 'TypeScript', 'MongoDB', 'Socket.IO', 'Firebase', 'Angular', 'Swagger'],
+      "Contexte : WonderTeck, plateforme de mobilité avec gestion des conducteurs.\n\nStack : NestJS, TypeScript, MongoDB, Socket.IO, Firebase, JWT, Swagger côté API ; Angular (PrimeNG, Chart.js) pour le back-office ; Mobile Money MTN et Moov pour les paiements.\n\nMon rôle : backend complet (inscriptions, profils et disponibilités des conducteurs, authentification JWT avec refresh token, paiements Mobile Money avec callbacks et réconciliation, parrainage avec calcul automatique des commissions) et contribution au back-office Angular.\n\nLien : code source du backend et du back-office sur GitHub (dépôt backend : github.com/orace18/zpickup_contribution_backend, back-office : github.com/orace18/zpickup_contribution).",
+    stack: ['NestJS', 'TypeScript', 'Angular', 'MongoDB', 'Socket.IO', 'Firebase', 'JWT', 'Mobile Money', 'Swagger'],
     links: { github: 'https://github.com/orace18/zpickup_contribution_backend' },
     coverImage: '',
     visible: true,
@@ -56,10 +55,10 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
   {
     title: 'TonDi',
     slug: 'tondi',
-    shortDescription: 'APIs Spring Boot avec paiement Mobile Money intégré, application publiée sur le Play Store.',
+    shortDescription: 'Application Android native en Java, côté front-end mobile et connectée à une API REST, publiée sur le Play Store.',
     longDescription:
-      "TonDi est une application dont j'ai développé les APIs REST avec Spring Boot chez SICMa & Associés. Le backend gère l'intégration Mobile Money côté serveur : initiation des paiements, traitement des callbacks et confirmation des transactions. Les données sont persistées via JPA/Hibernate sur une base PostgreSQL. L'application mobile associée est aujourd'hui publiée sur le Play Store.",
-    stack: ['Spring Boot', 'Java', 'PostgreSQL', 'Mobile Money'],
+      "Contexte : SICMa & Associés, application mobile TonDi, aujourd'hui publiée sur le Play Store.\n\nStack : Java (Android natif), consommation d'une API REST.\n\nMon rôle : développement du front-end mobile Android.",
+    stack: ['Java', 'Android', 'API REST'],
     links: {},
     coverImage: '',
     visible: true,
@@ -139,12 +138,12 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
     order: 11,
   },
   {
-    title: 'Club Chrétien — Backend',
+    title: 'Club Chrétien V2',
     slug: 'club-chretien-backend',
-    shortDescription: "Backend monolithique d'une application communautaire mobile : cercles, finances, événements et boutique.",
+    shortDescription: "Backend multi-modules d'une plateforme digitale avec paiements et réconciliation, développé chez HE System.",
     longDescription:
-      "Backend de l'application mobile Club Chrétien, développé avec Spring Boot 3 et Java 21. Il expose un contrat d'API mobile versionné et couvre la gestion des cercles et de leurs finances, les événements et la billetterie, la boutique et les notifications. Il combine PostgreSQL (migrations Flyway) et Neo4j pour les relations du réseau, avec WebSocket pour le temps réel, notifications push Firebase, stockage S3, mapping MapStruct et documentation OpenAPI. Le projet est documenté par des PRD, des ADR et une checklist de recette.",
-    stack: ['Spring Boot', 'Java 21', 'PostgreSQL', 'Neo4j', 'WebSocket', 'Firebase', 'Flyway', 'Docker'],
+      "Contexte : HE System, plateforme digitale (cercles, finances, événements, boutique) avec paiements et réconciliation bancaire.\n\nStack : Java 21, Spring Boot 3, PostgreSQL 16, Flyway, Neo4j, Firebase, Docker, GitLab CI/CD, paiements Jawupay et FedaPay.\n\nMon rôle : conception de la V2 du backend en architecture multi-modules, après avoir participé à la V1.\n\nLien : code source sur GitHub.",
+    stack: ['Spring Boot', 'Java 21', 'PostgreSQL', 'Flyway', 'Neo4j', 'Firebase', 'Docker', 'GitLab CI/CD', 'Jawupay', 'FedaPay'],
     links: { github: 'https://github.com/orace18/contribution-v2-cc-app' },
     coverImage: '',
     visible: true,
@@ -173,5 +172,77 @@ export const SEED_PROJECTS: CreateProjectDto[] = [
     coverImage: '',
     visible: true,
     order: 14,
+  },
+  {
+    title: "cc-accounting-service",
+    slug: 'cc-accounting-service',
+    shortDescription: "Microservice de réconciliation bancaire pour HE System, avec appels inter-services sécurisés par JWT.",
+    longDescription:
+      "Contexte : HE System, réconciliation bancaire de la plateforme Club Chrétien.\n\nStack : Spring Boot, WebClient (Reactor), JWT pour l'authentification entre services.\n\nMon rôle : microservice réalisé de bout en bout.",
+    stack: ['Spring Boot', 'Reactor', 'WebClient', 'JWT'],
+    links: {},
+    coverImage: '',
+    visible: true,
+    order: 15,
+  },
+  {
+    title: "CRA — comptes rendus d'activité",
+    slug: 'cra',
+    shortDescription: "API REST de gestion des comptes rendus d'activité mensuels, sécurisée et testée.",
+    longDescription:
+      "Contexte : HE System, gestion et reporting mensuel des comptes rendus d'activité (CRA).\n\nStack : Spring Boot, Spring Security, JWT, PostgreSQL, Flyway, tests JUnit 5 et Mockito.\n\nMon rôle : API REST complète.",
+    stack: ['Spring Boot', 'Spring Security', 'JWT', 'PostgreSQL', 'Flyway', 'JUnit 5', 'Mockito'],
+    links: {},
+    coverImage: '',
+    visible: true,
+    order: 16,
+  },
+  {
+    title: "Réseau social et parrainage",
+    slug: 'reseau-social-parrainage',
+    shortDescription: "Graphe de parrainage multi-niveaux et notifications multicanal (push, SMS, WhatsApp).",
+    longDescription:
+      "Contexte : HE System, réseau social et système de parrainage multi-niveaux avec calcul de commissions.\n\nStack : Neo4j, Firebase Auth, FCM, Route SMS, WhatsApp Meta API.\n\nMon rôle : modélisation du graphe de parrainage et mise en place des notifications.",
+    stack: ['Neo4j', 'Firebase', 'FCM', 'Route SMS', 'WhatsApp API'],
+    links: {},
+    coverImage: '',
+    visible: true,
+    order: 17,
+  },
+  {
+    title: "APIs FastAPI",
+    slug: 'apis-fastapi',
+    shortDescription: "APIs Python FastAPI conteneurisées, de la conception au déploiement.",
+    longDescription:
+      "Contexte : HE System.\n\nStack : Python, FastAPI, Pydantic, Docker.\n\nMon rôle : développement et déploiement des APIs.",
+    stack: ['Python', 'FastAPI', 'Pydantic', 'Docker'],
+    links: {},
+    coverImage: '',
+    visible: true,
+    order: 18,
+  },
+  {
+    title: "Plateforme e-commerce",
+    slug: 'plateforme-ecommerce',
+    shortDescription: "Backend NestJS d'une plateforme e-commerce pour MB Groupe.",
+    longDescription:
+      "Contexte : MB Groupe, plateforme e-commerce.\n\nStack : NestJS, TypeScript.\n\nMon rôle : développement du backend.",
+    stack: ['NestJS', 'TypeScript'],
+    links: {},
+    coverImage: '',
+    visible: true,
+    order: 19,
+  },
+  {
+    title: "Kereya",
+    slug: 'kereya',
+    shortDescription: "Backend Django et analyse de données pour VallisTech.",
+    longDescription:
+      "Contexte : VallisTech.\n\nStack : Django, Python.\n\nMon rôle : backend et analyse de données.",
+    stack: ['Django', 'Python'],
+    links: {},
+    coverImage: '',
+    visible: true,
+    order: 20,
   },
 ];
